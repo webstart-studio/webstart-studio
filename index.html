@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07111f" />
+    <title>RevenuePilot Pro</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">Premium revenue operating system</p>
+        <h1>Run your offer pipeline like a high-end agency.</h1>
+        <p class="hero-copy">
+          RevenuePilot Pro helps you package services, capture qualified leads, and forecast income
+          with a polished, reliable workflow that feels ready for real clients.
+        </p>
+        <div class="hero-actions">
+          <a href="#dashboard" class="btn btn-primary">Open live dashboard</a>
+          <a href="#offers" class="btn btn-secondary">Create your first offer</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="dashboard" class="dashboard-shell">
+      <section class="top-bar">
+        <div>
+          <p class="eyebrow">Business control center</p>
+          <h2>Everything you need to convert attention into revenue</h2>
+        </div>
+        <div class="toolbar-actions">
+          <button id="export-btn" class="btn btn-secondary">Export backup</button>
+          <button id="import-btn" class="btn btn-secondary">Import data</button>
+          <button id="clear-btn" class="btn btn-danger">Reset app</button>
+          <input id="import-file" type="file" accept="application/json" hidden />
+        </div>
+      </section>
+
+      <section class="summary-grid" aria-label="Business summary">
+        <article class="summary-card">
+          <p class="summary-label">Projected monthly revenue</p>
+          <h3 id="summary-revenue">$0</h3>
+          <p class="summary-foot">Based on your live forecasting inputs</p>
+        </article>
+        <article class="summary-card">
+          <p class="summary-label">Offers live</p>
+          <h3 id="summary-offers">0</h3>
+          <p class="summary-foot">Services packaged for buyers</p>
+        </article>
+        <article class="summary-card">
+          <p class="summary-label">Active leads</p>
+          <h3 id="summary-leads">0</h3>
+          <p class="summary-foot">Qualified prospects waiting for action</p>
+        </article>
+        <article class="summary-card">
+          <p class="summary-label">Average offer value</p>
+          <h3 id="summary-average">$0</h3>
+          <p class="summary-foot">Average price across your offers</p>
+        </article>
+      </section>
+
+      <section class="card calc-card">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">Revenue engine</p>
+            <h2>Forecast your growth with confidence</h2>
+          </div>
+        </div>
+        <form id="forecast-form" class="stack">
+          <div class="field">
+            <label for="leads">Leads per month</label>
+            <input type="number" id="leads" min="0" value="40" />
+          </div>
+          <div class="field">
+            <label for="conversion">Close rate (%)</label>
+            <input type="number" id="conversion" min="0" max="100" value="20" />
+          </div>
+          <div class="field">
+            <label for="value">Average deal value ($)</label>
+            <input type="number" id="value" min="0" value="250" />
+          </div>
+        </form>
+        <div id="forecast-result" class="forecast-result">$0 / month</div>
+      </section>
+
+      <section class="card offers-card" id="offers">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">Offer studio</p>
+            <h2>Package premium services</h2>
+          </div>
+        </div>
+        <form id="offer-form" class="stack">
+          <div class="field">
+            <label for="offer-title">Service name</label>
+            <input type="text" id="offer-title" placeholder="Brand strategy sprint" required />
+          </div>
+          <div class="field">
+            <label for="offer-price">Price</label>
+            <input type="number" id="offer-price" min="0" placeholder="1800" required />
+          </div>
+          <div class="field">
+            <label for="offer-description">Description</label>
+            <textarea id="offer-description" rows="3" placeholder="Show what is included and why it matters"></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Save offer</button>
+        </form>
+        <div class="list-toolbar">
+          <label class="sr-only" for="offer-search">Search offers</label>
+          <input id="offer-search" type="search" placeholder="Search offers" />
+        </div>
+        <ul id="offer-list" class="item-list"></ul>
+      </section>
+
+      <section class="card leads-card">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">Lead pipeline</p>
+            <h2>Capture interest from serious buyers</h2>
+          </div>
+        </div>
+        <form id="lead-form" class="stack">
+          <div class="field">
+            <label for="lead-name">Name</label>
+            <input type="text" id="lead-name" placeholder="Alex Chen" required />
+          </div>
+          <div class="field">
+            <label for="lead-email">Email</label>
+            <input type="email" id="lead-email" placeholder="alex@example.com" required />
+          </div>
+          <div class="field">
+            <label for="lead-service">Service interest</label>
+            <input type="text" id="lead-service" placeholder="Sales funnel setup" required />
+          </div>
+          <div class="field">
+            <label for="lead-budget">Budget</label>
+            <input type="number" id="lead-budget" min="0" placeholder="5000" />
+          </div>
+          <div class="field">
+            <label for="lead-note">Note</label>
+            <textarea id="lead-note" rows="3" placeholder="What challenges are they trying to solve?"></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Save lead</button>
+        </form>
+        <div class="list-toolbar">
+          <label class="sr-only" for="lead-search">Search leads</label>
+          <input id="lead-search" type="search" placeholder="Search leads" />
+        </div>
+        <ul id="lead-list" class="item-list"></ul>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <footer class="footer">
+      <p>RevenuePilot Pro is built to feel polished, organized, and ready to scale.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
