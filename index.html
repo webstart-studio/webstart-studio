@@ -1,162 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#07111f" />
-    <title>RevenuePilot Pro</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="hero">
-      <div class="hero-content">
-        <p class="eyebrow">Premium revenue operating system</p>
-        <h1>Run your offer pipeline like a high-end agency.</h1>
-        <p class="hero-copy">
-          RevenuePilot Pro helps you package services, capture qualified leads, and forecast income
-          with a polished, reliable workflow that feels ready for real clients.
-        </p>
-        <div class="hero-actions">
-          <a href="#dashboard" class="btn btn-primary">Open live dashboard</a>
-          <a href="#offers" class="btn btn-secondary">Create your first offer</a>
-        </div>
-      </div>
-    </header>
-
-    <main id="dashboard" class="dashboard-shell">
-      <section class="top-bar">
-        <div>
-          <p class="eyebrow">Business control center</p>
-          <h2>Everything you need to convert attention into revenue</h2>
-        </div>
-        <div class="toolbar-actions">
-          <button id="export-btn" class="btn btn-secondary">Export backup</button>
-          <button id="import-btn" class="btn btn-secondary">Import data</button>
-          <button id="clear-btn" class="btn btn-danger">Reset app</button>
-          <input id="import-file" type="file" accept="application/json" hidden />
-        </div>
-      </section>
-
-      <section class="summary-grid" aria-label="Business summary">
-        <article class="summary-card">
-          <p class="summary-label">Projected monthly revenue</p>
-          <h3 id="summary-revenue">$0</h3>
-          <p class="summary-foot">Based on your live forecasting inputs</p>
-        </article>
-        <article class="summary-card">
-          <p class="summary-label">Offers live</p>
-          <h3 id="summary-offers">0</h3>
-          <p class="summary-foot">Services packaged for buyers</p>
-        </article>
-        <article class="summary-card">
-          <p class="summary-label">Active leads</p>
-          <h3 id="summary-leads">0</h3>
-          <p class="summary-foot">Qualified prospects waiting for action</p>
-        </article>
-        <article class="summary-card">
-          <p class="summary-label">Average offer value</p>
-          <h3 id="summary-average">$0</h3>
-          <p class="summary-foot">Average price across your offers</p>
-        </article>
-      </section>
-
-      <section class="card calc-card">
-        <div class="card-header">
-          <div>
-            <p class="eyebrow">Revenue engine</p>
-            <h2>Forecast your growth with confidence</h2>
-          </div>
-        </div>
-        <form id="forecast-form" class="stack">
-          <div class="field">
-            <label for="leads">Leads per month</label>
-            <input type="number" id="leads" min="0" value="40" />
-          </div>
-          <div class="field">
-            <label for="conversion">Close rate (%)</label>
-            <input type="number" id="conversion" min="0" max="100" value="20" />
-          </div>
-          <div class="field">
-            <label for="value">Average deal value ($)</label>
-            <input type="number" id="value" min="0" value="250" />
-          </div>
-        </form>
-        <div id="forecast-result" class="forecast-result">$0 / month</div>
-      </section>
-
-      <section class="card offers-card" id="offers">
-        <div class="card-header">
-          <div>
-            <p class="eyebrow">Offer studio</p>
-            <h2>Package premium services</h2>
-          </div>
-        </div>
-        <form id="offer-form" class="stack">
-          <div class="field">
-            <label for="offer-title">Service name</label>
-            <input type="text" id="offer-title" placeholder="Brand strategy sprint" required />
-          </div>
-          <div class="field">
-            <label for="offer-price">Price</label>
-            <input type="number" id="offer-price" min="0" placeholder="1800" required />
-          </div>
-          <div class="field">
-            <label for="offer-description">Description</label>
-            <textarea id="offer-description" rows="3" placeholder="Show what is included and why it matters"></textarea>
-          </div>
-          <button class="btn btn-primary" type="submit">Save offer</button>
-        </form>
-        <div class="list-toolbar">
-          <label class="sr-only" for="offer-search">Search offers</label>
-          <input id="offer-search" type="search" placeholder="Search offers" />
-        </div>
-        <ul id="offer-list" class="item-list"></ul>
-      </section>
-
-      <section class="card leads-card">
-        <div class="card-header">
-          <div>
-            <p class="eyebrow">Lead pipeline</p>
-            <h2>Capture interest from serious buyers</h2>
-          </div>
-        </div>
-        <form id="lead-form" class="stack">
-          <div class="field">
-            <label for="lead-name">Name</label>
-            <input type="text" id="lead-name" placeholder="Alex Chen" required />
-          </div>
-          <div class="field">
-            <label for="lead-email">Email</label>
-            <input type="email" id="lead-email" placeholder="alex@example.com" required />
-          </div>
-          <div class="field">
-            <label for="lead-service">Service interest</label>
-            <input type="text" id="lead-service" placeholder="Sales funnel setup" required />
-          </div>
-          <div class="field">
-            <label for="lead-budget">Budget</label>
-            <input type="number" id="lead-budget" min="0" placeholder="5000" />
-          </div>
-          <div class="field">
-            <label for="lead-note">Note</label>
-            <textarea id="lead-note" rows="3" placeholder="What challenges are they trying to solve?"></textarea>
-          </div>
-          <button class="btn btn-primary" type="submit">Save lead</button>
-        </form>
-        <div class="list-toolbar">
-          <label class="sr-only" for="lead-search">Search leads</label>
-          <input id="lead-search" type="search" placeholder="Search leads" />
-        </div>
-        <ul id="lead-list" class="item-list"></ul>
-      </section>
-    </main>
-
-    <div id="toast" class="toast" role="status" aria-live="polite"></div>
-
-    <footer class="footer">
-      <p>RevenuePilot Pro is built to feel polished, organized, and ready to scale.</p>
-    </footer>
-
-    <script src="app.js"></script>
-  </body>
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="WEBSTART Studio entwickelt klare, moderne Websites und digitale Auftritte." />
+  <title>WEBSTART Studio — Digitales Webstudio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root { --ink:#11131c; --muted:#636879; --lime:#d7ff63; --blue:#7367f0; --line:rgba(17,19,28,.11); --paper:#fbfbfc; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--paper); font-family:Manrope,Arial,sans-serif; overflow-x:hidden; }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(1160px,calc(100% - 44px)); margin:auto; }
+    .eyebrow { font:500 11px/1.2 "DM Mono",monospace; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+    .nav { position:fixed; z-index:10; inset:20px 0 auto; }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; padding:13px 15px 13px 20px; border:1px solid rgba(255,255,255,.65); border-radius:18px; background:rgba(255,255,255,.72); backdrop-filter:blur(18px); box-shadow:0 8px 30px rgba(17,19,28,.06); }
+    .logo { display:flex; gap:9px; align-items:center; font-size:14px; font-weight:800; letter-spacing:-.05em; }
+    .logo-mark { width:24px; height:24px; border-radius:8px; background:var(--ink); display:grid; place-items:center; color:var(--lime); font-size:14px; }
+    .nav-links { display:flex; align-items:center; gap:24px; font-size:12px; font-weight:700; }
+    .nav-cta,.button { border:none; background:var(--ink); color:white; border-radius:12px; padding:11px 15px; font:700 12px Manrope,sans-serif; cursor:pointer; transition:transform .25s,background .25s; }
+    .nav-cta:hover,.button:hover { transform:translateY(-2px); background:var(--blue); }
+    .hero { position:relative; min-height:790px; padding:185px 0 90px; overflow:hidden; display:flex; align-items:center; }
+    .glow { position:absolute; width:550px; height:550px; border-radius:50%; filter:blur(2px); opacity:.9; pointer-events:none; }
+    .glow.one { background:radial-gradient(circle,#d7ff63 0,rgba(215,255,99,.18) 45%,transparent 70%); top:-130px; right:-80px; }
+    .glow.two { background:radial-gradient(circle,#8b82f8 0,rgba(139,130,248,.16) 42%,transparent 70%); bottom:-300px; left:-170px; }
+    .hero-grid { display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:end; position:relative; }
+    h1 { max-width:760px; margin:20px 0 25px; font-size:clamp(52px,7.5vw,98px); line-height:.96; letter-spacing:-.075em; }
+    h1 em { font-style:normal; color:var(--blue); }
+    .hero p { max-width:510px; font-size:17px; line-height:1.7; color:var(--muted); }
+    .hero-buttons { display:flex; gap:12px; margin-top:30px; }
+    .button.light { background:white; color:var(--ink); border:1px solid var(--line); }
+    .hero-meta { margin-top:70px; display:flex; gap:32px; font:500 11px/1.5 "DM Mono",monospace; color:var(--muted); }
+    .hero-card { padding:30px; border-radius:28px; color:white; background:#151827; box-shadow:20px 28px 0 rgba(215,255,99,.75); transform:rotate(3deg); }
+    .hero-card .mini-site { margin-top:29px; padding:15px; border-radius:15px; min-height:212px; color:#171924; background:linear-gradient(140deg,#f6f4ed,#d8ff68); }
+    .mini-bar { display:flex; justify-content:space-between; font:500 8px "DM Mono",monospace; }
+    .mini-title { margin-top:29px; font-size:28px; font-weight:800; line-height:.9; letter-spacing:-.08em; }
+    .mini-line { height:7px; width:85%; margin-top:15px; border-radius:4px; background:rgba(17,19,28,.2); }.mini-line.short{width:56%;}
+    .mini-pill { display:inline-block; margin-top:22px; padding:7px 10px; border-radius:99px; background:#171924; color:#d7ff63; font:500 8px "DM Mono",monospace; }
+    section { padding:125px 0; }
+    .section-head { display:flex; justify-content:space-between; gap:30px; align-items:end; margin-bottom:45px; }
+    h2 { max-width:650px; margin:12px 0 0; font-size:clamp(34px,4.5vw,59px); line-height:1.02; letter-spacing:-.065em; }
+    .intro { max-width:330px; font-size:14px; line-height:1.7; color:var(--muted); }
+    .services { border-top:1px solid var(--line); }
+    .service { display:grid; grid-template-columns:70px 1fr auto; gap:25px; padding:28px 0; border-bottom:1px solid var(--line); transition:padding .3s,background .3s; }
+    .service:hover { padding-left:16px; background:#f3f3f6; }.number { color:var(--blue); font:500 12px "DM Mono",monospace; }.service h3 { margin:0; font-size:20px; letter-spacing:-.045em; }.service p { max-width:420px; margin:7px 0 0; font-size:13px; line-height:1.6; color:var(--muted); }.arrow { font-size:22px; transition:transform .25s; }.service:hover .arrow{transform:translate(5px,-5px);}
+    .pricing { background:#f2f2f6; }.price-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:17px; }.price-card { position:relative; padding:27px; border:1px solid var(--line); border-radius:21px; background:white; }.price-card.featured { color:white; background:var(--ink); border-color:var(--ink); transform:translateY(-10px); }.tag { position:absolute; top:18px; right:18px; padding:6px 9px; border-radius:99px; background:var(--lime); color:var(--ink); font:500 9px "DM Mono",monospace; }.price-card h3 { margin:0; font-size:21px; letter-spacing:-.055em; }.price { margin:24px 0 5px; font-size:43px; font-weight:800; letter-spacing:-.08em; }.price small { font-size:14px; letter-spacing:0; }.price-card p { min-height:40px; margin:0; color:var(--muted); font-size:12px; line-height:1.55; }.price-card.featured p { color:#bac0d2; }.price-card ul { display:grid; gap:10px; min-height:112px; margin:26px 0; padding:0; list-style:none; font-size:12px; }.price-card li::before { content:'✓'; margin-right:8px; color:var(--blue); font-weight:800; }.price-card.featured li::before { color:var(--lime); }.price-card .button { display:block; text-align:center; }.price-card:not(.featured) .button { background:#f0f0f3; color:var(--ink); }
+    .work { background:var(--ink); color:white; }.work .eyebrow,.work .intro { color:#aeb2c0; }.work-grid { display:grid; grid-template-columns:1.25fr .75fr; gap:18px; }.project { min-height:355px; padding:24px; display:flex; flex-direction:column; justify-content:space-between; border-radius:24px; overflow:hidden; color:#171924; transition:transform .3s; }.project:hover { transform:translateY(-7px); }.project:first-child { background:#d7ff63; }.project:nth-child(2) { background:#cdc8ff; }.project:nth-child(3) { background:#ffceb6; }.project:nth-child(4) { background:#f2f2f2; }.project.large { grid-row:span 2; }.project-kicker { font:500 10px "DM Mono",monospace; opacity:.65; }.project-name { font-size:clamp(30px,3.6vw,52px); line-height:.94; font-weight:800; letter-spacing:-.08em; }.project-visual { align-self:end; width:76%; height:150px; padding:14px; border-radius:15px 15px 0 0; background:#171924; color:white; transform:rotate(-5deg); }.project-visual.purple { background:#645bd8; }.project-visual.orange { background:#f47c50; }.fake-nav{display:flex;justify-content:space-between;font:500 8px "DM Mono",monospace;}.fake-heading{margin-top:34px;font-size:24px;font-weight:800;letter-spacing:-.06em;}.fake-button{width:54px;height:8px;margin-top:14px;border-radius:8px;background:var(--lime);}.project-link { align-self:flex-start; margin-top:18px; border:0; padding:0; background:none; color:inherit; cursor:pointer; font:700 11px Manrope,sans-serif; }.project-link::after { content:' ↗'; }.project-link:hover { text-decoration:underline; }
+    .process-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }.process { padding:24px; min-height:220px; border:1px solid var(--line); border-radius:20px; background:white; }.process b { display:block; color:var(--blue); font:500 11px "DM Mono",monospace; }.process h3 { margin:42px 0 8px; font-size:20px; letter-spacing:-.05em; }.process p { margin:0; color:var(--muted); font-size:13px; line-height:1.6; }
+    .contact { padding:115px 0; background:linear-gradient(125deg,#d7ff63,#b7effc 58%,#d0ccff); }.contact-box { display:grid; grid-template-columns:1fr .75fr; gap:60px; }.contact h2 { font-size:clamp(42px,5.5vw,70px); }.contact p { color:#333743; line-height:1.7; }.contact-form { display:grid; gap:12px; }.contact-form input,.contact-form textarea { width:100%; padding:14px; border:1px solid rgba(17,19,28,.18); border-radius:11px; outline:none; background:rgba(255,255,255,.55); color:var(--ink); font:500 13px Manrope,sans-serif; }.contact-form textarea { min-height:94px; resize:vertical; }.form-note { margin:2px 0 0; font-size:10px!important; color:#50545d!important; }.footer { padding:27px 0; background:var(--ink); color:#c3c5ce; font:500 10px "DM Mono",monospace; }.footer .wrap { display:flex; justify-content:space-between; gap:18px; }.reveal { opacity:0; transform:translateY(25px); transition:opacity .7s ease,transform .7s ease; }.reveal.show { opacity:1; transform:none; }.modal { position:fixed; z-index:20; inset:0; display:grid; place-items:center; padding:20px; opacity:0; pointer-events:none; background:rgba(11,13,22,.55); backdrop-filter:blur(7px); transition:opacity .25s; }.modal.open { opacity:1; pointer-events:auto; }.modal-box { width:min(470px,100%); padding:30px; border-radius:24px; background:white; box-shadow:0 24px 80px rgba(0,0,0,.25); transform:translateY(12px) scale(.98); transition:transform .25s; }.modal.open .modal-box { transform:none; }.modal-close { float:right; border:0; background:#f1f1f4; border-radius:9px; width:31px; height:31px; cursor:pointer; font-size:16px; }.modal h3 { margin:12px 0 10px; font-size:37px; line-height:.96; letter-spacing:-.07em; }.modal p { color:var(--muted); font-size:13px; line-height:1.7; }.modal .button { display:inline-block; margin-top:12px; }
+    @media(max-width:760px){ .wrap{width:min(100% - 30px,1160px)} .nav{inset:12px 0 auto}.nav-links{display:none}.hero{min-height:auto;padding:145px 0 85px}.hero-grid,.contact-box{grid-template-columns:1fr}.hero-card{width:82%;justify-self:end;margin-top:25px}.section-head{display:block}.intro{margin-top:19px}.work-grid,.price-grid{grid-template-columns:1fr}.project.large{grid-row:auto}.project{min-height:270px}.price-card.featured{transform:none}.process-grid{grid-template-columns:1fr}.service{grid-template-columns:36px 1fr auto;gap:12px}.hero-meta{gap:15px;font-size:9px}.footer .wrap{display:block}.footer div+div{margin-top:9px}section{padding:85px 0} }
+  </style>
+</head>
+<body>
+  <nav class="nav"><div class="wrap nav-inner"><a class="logo" href="#top"><span class="logo-mark">W</span>WEBSTART STUDIO</a><div class="nav-links"><a href="#leistungen">Leistungen</a><a href="#preise">Preise</a><a href="#projekte">Projekte</a><a href="#ablauf">Ablauf</a></div><a class="nav-cta" href="#kontakt">Projekt anfragen →</a></div></nav>
+  <main id="top">
+    <section class="hero"><div class="glow one"></div><div class="glow two"></div><div class="wrap hero-grid"><div class="reveal"><div class="eyebrow">Digitales Webstudio · Deutschland</div><h1>Websites, die <em>nicht</em> übersehen werden.</h1><p>WEBSTART Studio entwickelt klare, moderne Webseiten für Creator, Communitys und kleine Projekte — schnell, mobilfreundlich und mit Sinn für gute Details.</p><div class="hero-buttons"><a class="button" href="#projekte">Projekte ansehen</a><a class="button light" href="#kontakt">Kontakt aufnehmen</a></div><div class="hero-meta"><span>01 — KLARER AUFTRITT</span><span>02 — MOBILE FIRST</span><span>03 — SMOOTH DETAILS</span></div></div><aside class="hero-card reveal"><div class="eyebrow" style="color:#d7ff63">DEIN AUFTRITT, DEIN STIL</div><div class="mini-site"><div class="mini-bar"><span>WEBSTART / 01</span><span>● LIVE</span></div><div class="mini-title">Make your<br>next move.</div><div class="mini-line"></div><div class="mini-line short"></div><span class="mini-pill">ENTDECKEN →</span></div></aside></div></section>
+    <section id="leistungen"><div class="wrap"><div class="section-head reveal"><div><div class="eyebrow">Was ich anbiete</div><h2>Digital, klar und auf den Punkt.</h2></div><p class="intro">Kein unnötiger Schnickschnack. Sondern ein Auftritt, der zu deinem Projekt passt und auf jedem Gerät überzeugt.</p></div><div class="services reveal"><a class="service" href="#kontakt" aria-label="One-Page Website anfragen"><span class="number">01</span><div><h3>One-Page Websites</h3><p>Eine starke Startseite mit allem Wichtigen: Stil, Infos, Social Links und Kontakt.</p></div><span class="arrow">↗</span></a><a class="service" href="#kontakt" aria-label="Creator und Community Website anfragen"><span class="number">02</span><div><h3>Creator & Community Pages</h3><p>Ein Zuhause für Content, Teams, Gaming-Projekte oder persönliche Marken.</p></div><span class="arrow">↗</span></a><a class="service" href="#kontakt" aria-label="Modernes Webdesign anfragen"><span class="number">03</span><div><h3>Modernes Webdesign</h3><p>Saubere Layouts, starke Typografie, Animationen und ein Look, der hängen bleibt.</p></div><span class="arrow">↗</span></a></div></div></section>
+    <section class="pricing" id="preise"><div class="wrap"><div class="section-head reveal"><div><div class="eyebrow">Einfache Preise</div><h2>Fair starten. Klar wissen, was drin ist.</h2></div><p class="intro">Diese Preise sind für kleine, einfache Websites. Domain und Hosting sind nicht dabei und werden vom Kunden selbst bezahlt.</p></div><div class="price-grid reveal"><article class="price-card"><h3>Starter</h3><div class="price">39 <small>€</small></div><p>Für eine erste, klare One-Page-Website.</p><ul><li>Eine Webseite</li><li>Mobile Ansicht</li><li>Social Links & Kontakt</li><li>Eine kleine Änderung</li></ul><a class="button" href="#kontakt">Anfragen</a></article><article class="price-card featured"><span class="tag">EMPFOHLEN</span><h3>Creator</h3><div class="price">69 <small>€</small></div><p>Für Creator, Teams und kleine Communitys.</p><ul><li>One-Page mit mehr Bereichen</li><li>Individuelle Farben & Stil</li><li>Sanfte Animationen</li><li>Zwei Änderungen</li></ul><a class="button" href="#kontakt">Anfragen</a></article><article class="price-card"><h3>Plus</h3><div class="price">119 <small>€</small></div><p>Wenn dein Auftritt etwas mehr Platz braucht.</p><ul><li>Bis zu drei Unterseiten</li><li>Modernes Design</li><li>Mobile Ansicht</li><li>Zwei Änderungen</li></ul><a class="button" href="#kontakt">Anfragen</a></article></div></div></section>
+    <section class="work" id="projekte"><div class="wrap"><div class="section-head reveal"><div><div class="eyebrow">Ausgewählte Arbeiten</div><h2>Ideen, die Form bekommen.</h2></div><p class="intro">Konzeptprojekte, die zeigen, wie verschieden ein digitaler Auftritt aussehen kann.</p></div><div class="work-grid reveal"><article class="project large"><span class="project-kicker">KONZEPT / ESPORTS</span><div class="project-name">AXIOM<br>LEAGUE</div><div class="project-visual"><div class="fake-nav"><span>AXIOM</span><span>MENU</span></div><div class="fake-heading">PLAY<br>BRIGHT.</div><div class="fake-button"></div></div><button class="project-link" data-project="axiom">Projekt ansehen</button></article><article class="project"><span class="project-kicker">KONZEPT / CREATOR</span><div class="project-name">ELARA<br>STUDIO</div><div class="project-visual purple"><div class="fake-nav"><span>ELARA</span><span>01</span></div><div class="fake-heading">VISUAL<br>STORIES.</div></div><button class="project-link" data-project="elara">Projekt ansehen</button></article><article class="project"><span class="project-kicker">KONZEPT / COMMUNITY</span><div class="project-name">KINSHIP<br>COLLECTIVE</div><div class="project-visual orange"><div class="fake-nav"><span>KINSHIP</span><span>JOIN</span></div><div class="fake-heading">STAY<br>CURIOUS.</div></div><button class="project-link" data-project="kinship">Projekt ansehen</button></article></div></div></section>
+    <section id="ablauf"><div class="wrap"><div class="section-head reveal"><div><div class="eyebrow">So läuft es ab</div><h2>Einfach vom ersten Gedanken bis zum Livegang.</h2></div></div><div class="process-grid reveal"><article class="process"><b>01 / KENNENLERNEN</b><h3>Deine Idee</h3><p>Du erzählst, was dein Projekt braucht, wen du erreichen möchtest und welchen Stil du magst.</p></article><article class="process"><b>02 / GESTALTEN</b><h3>Dein Look</h3><p>Aus deiner Idee entsteht ein klares Design, das am Handy genauso gut funktioniert wie am PC.</p></article><article class="process"><b>03 / LIVE GEHEN</b><h3>Deine Website</h3><p>Nach deinem Feedback wird alles fertig gemacht, getestet und für den Start vorbereitet.</p></article></div></div></section>
+    <section class="contact" id="kontakt"><div class="wrap contact-box reveal"><div><div class="eyebrow">Lass uns starten</div><h2>Dein Projekt verdient einen guten Auftritt.</h2><p>Schreib kurz, was du vorhast. Gemeinsam finden wir heraus, ob WEBSTART Studio zu deinem Projekt passt.</p></div><form class="contact-form" id="contactForm"><input aria-label="Name" placeholder="Dein Name" required><input aria-label="E-Mail" type="email" placeholder="Deine E-Mail-Adresse" required><textarea aria-label="Nachricht" placeholder="Erzähl kurz von deinem Projekt" required></textarea><button class="button" type="submit">Nachricht vorbereiten →</button><p class="form-note">Hinweis: Ersetze vor dem Veröffentlichen in der Datei die Kontaktadresse <b>deine-email@beispiel.de</b> durch eine echte, mit deinen Eltern abgesprochene E-Mail-Adresse.</p></form></div></section>
+  </main>
+  <div class="modal" id="projectModal" aria-hidden="true"><div class="modal-box"><button class="modal-close" aria-label="Schließen">×</button><div class="eyebrow" id="modalKicker">KONZEPTPROJEKT</div><h3 id="modalTitle"></h3><p id="modalText"></p><a class="button" href="#kontakt" id="modalCta">Ähnlichen Stil anfragen →</a></div></div>
+  <footer class="footer"><div class="wrap"><div>© 2026 WEBSTART STUDIO</div><div>DESIGNED FOR THE NEXT MOVE.</div></div></footer>
+  <script>
+    const reveals=document.querySelectorAll('.reveal');
+    const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show');observer.unobserve(entry.target)}}),{threshold:.12});
+    reveals.forEach(el=>observer.observe(el));
+    const projects={axiom:{title:'AXIOM LEAGUE',text:'Ein mutiges Esports-Konzept mit starken Kontrasten, klarer Navigation und einem energiegeladenen Look.'},elara:{title:'ELARA STUDIO',text:'Ein ruhiger Creator-Auftritt, der Bilder, Ideen und persönliche Geschichten in den Mittelpunkt stellt.'},kinship:{title:'KINSHIP COLLECTIVE',text:'Eine moderne Community-Seite mit klaren Einstiegen für Mitglieder, Events und gemeinsame Projekte.'}};
+    const modal=document.getElementById('projectModal');document.querySelectorAll('.project-link').forEach(button=>button.addEventListener('click',()=>{const project=projects[button.dataset.project];document.getElementById('modalTitle').textContent=project.title;document.getElementById('modalText').textContent=project.text;modal.classList.add('open');modal.setAttribute('aria-hidden','false')}));
+    const closeModal=()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true')};document.querySelector('.modal-close').addEventListener('click',closeModal);modal.addEventListener('click',event=>{if(event.target===modal)closeModal()});document.getElementById('modalCta').addEventListener('click',closeModal);
+    document.getElementById('contactForm').addEventListener('submit',event=>{event.preventDefault();const form=event.currentTarget;const name=form.querySelector('input').value;const message=form.querySelector('textarea').value;const subject=encodeURIComponent('Projektanfrage an WEBSTART Studio');const body=encodeURIComponent('Name: '+name+'\n\nProjekt: '+message);window.location.href='mailto:deine-email@beispiel.de?subject='+subject+'&body='+body;});
+  </script>
+</body>
 </html>
